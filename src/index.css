@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -96,6 +90,86 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-cyber-dark text-cyber-text;
+    font-family: 'Courier New', monospace;
+  }
+  
+  /* Custom scrollbar for the cyberpunk theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-cyber-black;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cyber-green;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-cyber-green-light;
+  }
+}
+
+@layer components {
+  .cyber-terminal {
+    @apply font-mono border border-cyber-green bg-cyber-black text-cyber-green p-4 rounded shadow-lg shadow-cyber-green/20;
+  }
+  
+  .cyber-text {
+    @apply text-cyber-green;
+  }
+  
+  .cyber-input {
+    @apply bg-cyber-black border border-cyber-green text-cyber-green px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-cyber-green;
+  }
+  
+  .cyber-button {
+    @apply bg-cyber-green text-cyber-black font-bold px-4 py-2 rounded hover:bg-cyber-green-light transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-cyber-green-light;
+  }
+  
+  .cyber-button-outlined {
+    @apply bg-transparent border border-cyber-green text-cyber-green font-bold px-4 py-2 rounded hover:bg-cyber-green/10 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-cyber-green;
+  }
+  
+  .cyber-panel {
+    @apply border border-cyber-green bg-cyber-black/80 rounded p-4;
+  }
+  
+  .cyber-header {
+    @apply text-cyber-green font-bold border-b border-cyber-green pb-2 mb-4;
+  }
+  
+  .loading-dots::after {
+    content: '.';
+    animation: loading 1.5s infinite;
+  }
+  
+  @keyframes loading {
+    0% { content: '.'; }
+    33% { content: '..'; }
+    66% { content: '...'; }
+    100% { content: '.'; }
+  }
+  
+  .cyber-scanline {
+    @apply pointer-events-none fixed inset-0 h-screen w-screen overflow-hidden z-50 bg-cyber-green/[0.015] opacity-70;
+    background-image: linear-gradient(
+      0deg,
+      transparent 0%,
+      rgba(32, 128, 32, 0.2) 2%,
+      rgba(32, 128, 32, 0.8) 3%,
+      rgba(32, 128, 32, 0.2) 3%,
+      transparent 100%
+    );
+    background-size: 100% 100%;
+    animation: scanline 7.5s linear infinite;
+  }
+  
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    80%, 100% { transform: translateY(100%); }
   }
 }

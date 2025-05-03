@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,16 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Cyberpunk theme colors
+				cyber: {
+					'black': '#121212',
+					'dark': '#1a1a1a',
+					'green': '#00ff00',
+					'green-dark': '#00cc00',
+					'green-light': '#99ff99',
+					'text': '#e0e0e0',
+					'accent': '#ff00ff'
 				}
 			},
 			borderRadius: {
@@ -84,11 +95,39 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-green': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.5' },
+				},
+				'text-flicker': {
+					'0%': { opacity: '0.1' },
+					'2%': { opacity: '1' },
+					'8%': { opacity: '0.1' },
+					'9%': { opacity: '1' },
+					'12%': { opacity: '0.1' },
+					'20%': { opacity: '1' },
+					'25%': { opacity: '0.3' },
+					'30%': { opacity: '1' },
+					'70%': { opacity: '0.7' },
+					'72%': { opacity: '0.2' },
+					'77%': { opacity: '0.9' },
+					'100%': { opacity: '0.9' },
+				},
+				'glitch': {
+					'0%': { transform: 'translateX(0)' },
+					'25%': { transform: 'translateX(5px)' },
+					'50%': { transform: 'translateX(-5px)' },
+					'75%': { transform: 'translateX(5px)' },
+					'100%': { transform: 'translateX(0)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-green': 'pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				'text-flicker': 'text-flicker 3s linear infinite',
+				'glitch': 'glitch 0.5s ease-in-out infinite'
 			}
 		}
 	},
