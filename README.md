@@ -6,5 +6,5 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
-and it was created by me V.Seshank babu don't mind me if anything fail check every line of script find it fixed because number one you can know how internal code and script work number two you can use this from your educational purposes and your learning purposes because it is a interpreted source based project thank you so much love you all 
+and it was created by me V.Seshank babu don't mind me if anything fail check every line of script find it fixed because number one you can know how internal code and script work number two you can use this from your educational purposes and your learning purposes because it is a interpreted source based project thank you so much love you all and and not for companies use your developers to create  
  **#created by V.Seshank Babu#**
