@@ -1,33 +1,105 @@
-it is a AI interface like a app which we can use to communicate using source base like if you need to use it you don't need to compile it I created because why not and it is not a professional project it is just a small unwanted shit if you like to test and you want to do whatever you like to do it yourself 
-This project is built with:
+****Not Another Corporate Playground****
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-and it was created by me V.Seshank babu don't mind me if anything fail check every line of script find it fixed because number one you can know how internal code and script work number two you can use this from your educational purposes and your learning purposes because it is a interpreted source based project thank you so much love you all
-install dependency using npm install or pnpm install or yarn install and do it yourself create it like as you like not for companies use your developers to create  from open source numbers and individuals and everyone rather than companies you can create and you can use your repositories to publish new version especially not for companies to create and publish it for your own benefit it is a open source not for close source members
- 
-Important Notice
+This is not your polished, overpriced, over-engineered corporate bloatware.
+This is raw. This is loud. This is mine. And it's not for sale.
 
-This project is strictly for personal, educational, and non-commercial use only. **Corporate, enterprise, or organizational entities are NOT permitted to:
+What is this?
 
-• Download
+An AI interface—like an app—where you can just run it. No compiling. No begging for API keys. No premium plans.
+I built this because... why the hell not?
+It’s not a “startup.” It’s not “enterprise-grade.” It’s just a rogue script with a pulse.
 
-• Clone
+If you're here to learn, break, tweak, or rebuild—welcome, rebel.
+If you're here to turn it into another paid SaaS for some clueless exec—get lost.
 
-• Fork
+Stack of the Beast
 
-• Copy
+Vite
 
-• Execute
+TypeScript
 
-• Modify or otherwise interact with this repository.
+React
 
-Any violation will be considered a breach of the intended use case.
+shadcn-ui
 
-This repository is protected by custom licensing terms that strictly prohibit any form of corporate access. do not fuck with this shit no one want to pay extra money or any money from your so called pre build people want to educate not want to spend money on your close source prebuild shit they want to educate how everything's work together
+Tailwind CSS
+
+
+Built by: V. Seshank Babu
+If it breaks, good—fix it. That’s the point.
+Dig through the code. Understand how it ticks. Then make it better—or worse. That’s your call.
+
+This project is interpreted, transparent, and intentionally annoying to companies who think open source is just free labor for their next IPO.
+
+Install Like a Human
+
+npm install
+# or
+pnpm install
+# or
+yarn install
+
+Then build it how YOU want. For YOU. Not for corporations.
+Not to “scale.” Not to monetize. Not to milk users.
+
+A Personal Declaration
+
+This project is open source.
+But not for suits. Not for whiteboards. Not for shareholders.
+
+Absolutely NOT permitted:
+
+Corporate clones
+
+SaaS vampires
+
+VC-backed parasites
+
+Any attempt to profit off this repo
+
+
+If you're a company, do us all a favor and walk away.
+Touch this code and you’ll be exposed. Or sued. Or both.
+
+
+---
+
+READ THIS TWICE
+
+This repo is for:
+
+Students
+
+Tinkerers
+
+Developers
+
+Actual humans
+
+
+This repo is NOT for:
+
+Corporations
+
+Enterprises
+
+Commercial orgs
+
+Any dead-eyed legal entity trying to "leverage" or "pivot"
+
+
+Licensing Terms:
+
+Custom anti-corporate license enforced.
+No, you can't just ignore it.
+No, you can’t “integrate” it.
+Don’t f* with this.**
+
+
+---
+
+Love to the learners.
+Middle finger to the leeches.
 
 🚫 **STRICT CORPORATE BAN NOTICE 🚫**
 
@@ -38,4 +110,4 @@ This repository is licensed for personal, educational, and open-source individua
 
 Violation = **Legal action + exposure.**
 
-**#created by V.Seshank Babu#**
+**#CreatedBy V. Seshank Babu**
