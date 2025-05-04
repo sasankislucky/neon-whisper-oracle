@@ -1,0 +1,73 @@
+name: Block Corporate Contributions
+
+on:
+  pull_request:
+    types: [opened]
+  issues:
+    types: [opened]
+
+jobs:
+  block-corporate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check sender email and block corporates
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const corporateDomains = [
+            '@microsoft.com',
+            '@google.com',
+            '@amazon.com',
+            '@ibm.com',
+            '@oracle.com',
+            '@facebook.com',
+            '@meta.com',
+            '@apple.com',
+            '@salesforce.com',
+            '@sap.com'
+          ];
+
+          const sender = context.payload.sender.login;
+          const senderData = await github.rest.users.getByUsername({ username: sender });
+          const email = senderData.data.email || '';
+
+          let isCorporate = false;
+          corporateDomains.forEach(domain => {
+            if (email.endsWith(domain)) {
+              isCorporate = true;
+            }
+          });
+
+          if (isCorporate) {
+            const message = '🚫 **Access Denied:** Corporate entities are not allowed to contribute, clone, or use this repository. Your pull request/issue has been closed automatically. This project is for personal/educational use only. #created by V. Seshank Babu#';
+            
+            if (context.eventName === 'issues') {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: message
+              });
+              await github.rest.issues.update({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'closed'
+              });
+            }
+
+            if (context.eventName === 'pull_request') {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: message
+              });
+              await github.rest.pulls.update({
+                pull_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'closed'
+              });
+            }
+          }
