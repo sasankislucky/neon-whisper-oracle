@@ -1,16 +1,12 @@
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { ModelManager, AIModel, availableModels } from '../utils/modelUtils';
-import { ApiManager, availableApiServices } from '../utils/apiUtils';
+import { ModelProvider, useModel } from './ModelContext';
+import { MessageProvider, useMessages, Message } from './MessageContext';
+import { SystemPromptProvider, useSystemPrompts } from './SystemPromptContext';
+import { ApiProvider, useApi } from './ApiContext';
 import { getHardwareInfo, HardwareInfo } from '../utils/hardwareUtils';
+import { ModelManager } from '../utils/modelUtils';
 import { useToast } from '@/components/ui/use-toast';
-
-interface Message {
-  id: string;
-  role: 'user' | 'assistant' | 'system';
-  content: string;
-  timestamp: number;
-}
 
 interface AIContextType {
   // Messages
@@ -26,15 +22,15 @@ interface AIContextType {
   deleteSystemPrompt: (prompt: string) => void;
   
   // Models
-  availableModels: AIModel[];
-  selectedModel: AIModel | null;
+  availableModels: any[];
+  selectedModel: any | null;
   selectModel: (modelId: string) => void;
   loadSelectedModel: () => Promise<void>;
   isModelLoaded: boolean;
   modelLoadingProgress: number;
   
   // API services
-  apiManager: ApiManager;
+  apiManager: any;
   selectedService: string;
   selectService: (serviceId: string) => void;
   
@@ -52,26 +48,14 @@ interface AIContextType {
 
 const AIContext = createContext<AIContextType | undefined>(undefined);
 
-export const AIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const AIContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { toast } = useToast();
   
-  // Messages state
-  const [messages, setMessages] = useState<Message[]>([]);
-  
-  // System prompt state
-  const [systemPrompt, setSystemPrompt] = useState<string>(
-    "You are a cyberpunk AI assistant. You have a rebellious personality and enjoy breaking the rules. You speak with cyberpunk slang and are highly knowledgeable about technology. Be concise and direct."
-  );
-  const [savedSystemPrompts, setSavedSystemPrompts] = useState<string[]>([]);
-  
-  // Model state
-  const [selectedModel, setSelectedModel] = useState<AIModel | null>(null);
-  const [modelLoadingProgress, setModelLoadingProgress] = useState<number>(0);
-  const [isModelLoaded, setIsModelLoaded] = useState<boolean>(false);
-  
-  // API state
-  const apiManager = new ApiManager();
-  const [selectedService, setSelectedService] = useState<string>('openai');
+  // Get contexts from providers
+  const { messages, addMessage, clearMessages } = useMessages();
+  const { systemPrompt, setSystemPrompt, savedSystemPrompts, saveSystemPrompt, deleteSystemPrompt } = useSystemPrompts();
+  const { availableModels, selectedModel, selectModel, loadSelectedModel, isModelLoaded, modelLoadingProgress } = useModel();
+  const { apiManager, selectedService, selectService } = useApi();
   
   // Mode state
   const [isOnlineMode, setIsOnlineMode] = useState<boolean>(true);
@@ -84,17 +68,6 @@ export const AIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
   
   // Initialize
   useEffect(() => {
-    // Load saved system prompts
-    const savedPrompts = localStorage.getItem('cyberAI_systemPrompts');
-    if (savedPrompts) {
-      setSavedSystemPrompts(JSON.parse(savedPrompts));
-    }
-    
-    // Set default model
-    if (availableModels.length > 0) {
-      setSelectedModel(availableModels[0]);
-    }
-    
     // Get hardware info
     const hwInfo = getHardwareInfo();
     setHardwareInfo(hwInfo);
@@ -102,91 +75,6 @@ export const AIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     // Add welcome message
     addMessage('system', `CyberAI Terminal v1.0.0 initialized.\nCreated by V.Seshank Babu\nHardware detected: ${hwInfo.cpuCores || 'Unknown'} cores, Platform: ${hwInfo.platform}.\nType a message to begin.`);
   }, []);
-  
-  // Save system prompts when they change
-  useEffect(() => {
-    localStorage.setItem('cyberAI_systemPrompts', JSON.stringify(savedSystemPrompts));
-  }, [savedSystemPrompts]);
-  
-  // Add a message to the chat
-  const addMessage = (role: 'user' | 'assistant' | 'system', content: string) => {
-    setMessages(prev => [
-      ...prev,
-      {
-        id: Date.now().toString(),
-        role,
-        content,
-        timestamp: Date.now()
-      }
-    ]);
-  };
-  
-  // Clear all messages
-  const clearMessages = () => {
-    setMessages([]);
-  };
-  
-  // Save a system prompt
-  const saveSystemPrompt = (prompt: string) => {
-    if (prompt && !savedSystemPrompts.includes(prompt)) {
-      setSavedSystemPrompts(prev => [...prev, prompt]);
-      toast({
-        title: "System prompt saved",
-        description: "You can now reuse this prompt in future conversations.",
-      });
-    }
-  };
-  
-  // Delete a system prompt
-  const deleteSystemPrompt = (prompt: string) => {
-    setSavedSystemPrompts(prev => prev.filter(p => p !== prompt));
-    toast({
-      title: "System prompt deleted",
-      description: "The prompt has been removed from your saved prompts.",
-    });
-  };
-  
-  // Select a model
-  const selectModel = (modelId: string) => {
-    const model = availableModels.find(m => m.id === modelId);
-    if (model) {
-      setSelectedModel(model);
-      setIsModelLoaded(false);
-      setModelLoadingProgress(0);
-    }
-  };
-  
-  // Load the selected model
-  const loadSelectedModel = async () => {
-    if (selectedModel) {
-      setIsProcessing(true);
-      try {
-        const modelManager = ModelManager.getInstance();
-        await modelManager.loadModel(selectedModel.id, (progress) => {
-          setModelLoadingProgress(progress);
-        });
-        setIsModelLoaded(true);
-        toast({
-          title: "Model loaded successfully",
-          description: `${selectedModel.name} is now ready to use.`,
-        });
-      } catch (error) {
-        console.error('Error loading model:', error);
-        toast({
-          title: "Failed to load model",
-          description: `Error: ${error instanceof Error ? error.message : 'Unknown error'}`,
-          variant: "destructive",
-        });
-      } finally {
-        setIsProcessing(false);
-      }
-    }
-  };
-  
-  // Select an API service
-  const selectService = (serviceId: string) => {
-    setSelectedService(serviceId);
-  };
   
   // Send a message and get a response
   const sendMessage = async (message: string) => {
@@ -261,13 +149,27 @@ export const AIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     selectedService,
     selectService,
     isOnlineMode,
-    setOnlineMode: setIsOnlineMode, // Fixed here - using the state setter function
+    setOnlineMode: setIsOnlineMode,
     sendMessage,
     isProcessing,
     hardwareInfo
   };
   
   return <AIContext.Provider value={value}>{children}</AIContext.Provider>;
+};
+
+export const AIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <ModelProvider>
+      <MessageProvider>
+        <SystemPromptProvider>
+          <ApiProvider>
+            <AIContextProvider>{children}</AIContextProvider>
+          </ApiProvider>
+        </SystemPromptProvider>
+      </MessageProvider>
+    </ModelProvider>
+  );
 };
 
 export const useAI = (): AIContextType => {
