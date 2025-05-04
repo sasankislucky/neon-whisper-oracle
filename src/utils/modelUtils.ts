@@ -83,27 +83,29 @@ export class ModelManager {
       
       let loadedModel;
       
+      // Convert our simple progress callback to match HF's expected ProgressCallback type
+      const adaptedProgressCallback = (progressInfo: any) => {
+        // Extract a numeric value from the progress info
+        const numericProgress = typeof progressInfo === 'number' 
+          ? progressInfo 
+          : progressInfo?.progress || 0;
+        
+        this.downloadProgress.set(modelId, numericProgress);
+        progressCallback?.(numericProgress);
+      };
+      
       // Load different types of models
       if (modelId === 'gpt2') {
         loadedModel = await pipeline('text-generation', modelId, {
-          progress_callback: (progress: number) => {
-            this.downloadProgress.set(modelId, progress);
-            progressCallback?.(progress);
-          }
+          progress_callback: adaptedProgressCallback
         });
       } else if (modelId === 'distilbert-base-uncased') {
         loadedModel = await pipeline('feature-extraction', modelId, {
-          progress_callback: (progress: number) => {
-            this.downloadProgress.set(modelId, progress);
-            progressCallback?.(progress);
-          }
+          progress_callback: adaptedProgressCallback
         });
       } else if (modelId === 'whisper-tiny') {
         loadedModel = await pipeline('automatic-speech-recognition', 'onnx-community/whisper-tiny.en', {
-          progress_callback: (progress: number) => {
-            this.downloadProgress.set(modelId, progress);
-            progressCallback?.(progress);
-          }
+          progress_callback: adaptedProgressCallback
         });
       }
       
