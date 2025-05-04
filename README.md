@@ -29,16 +29,13 @@ Any violation will be considered a breach of the intended use case.
 
 This repository is protected by custom licensing terms that strictly prohibit any form of corporate access. do not fuck with this shit no one want to pay extra money or any money from your so called pre build people want to educate not want to spend money on your close source prebuild shit they want to educate how everything's work together
 
-🚫 **STRICTLY NO CORPORATE ACCESS 🚫**
+🚫 **STRICT CORPORATE BAN NOTICE 🚫**
 
-This repository is **100% open-source for individual use only.**
+This repository is licensed for personal, educational, and open-source individual use **ONLY.**
 
-- ❌ **NO COMPANIES / NO ENTERPRISES / NO ORGANIZATIONS ALLOWED.**
-- ❌ You are **NOT permitted to download, clone, fork, or use** this repository if you are part of any corporate/commercial entity.
-- ✅ Personal, educational, and open-source developers **ONLY.**
+**NOT PERMITTED:**
+- Any form of download, clone, fork, copy, execution, or modification by corporations, enterprises, or commercial organizations.
 
-Violators will be **legally pursued** and **publicly exposed.**
-
-This project is protected under a **custom license** that strictly enforces these terms.
+Violation = **Legal action + exposure.**
 
 **#created by V.Seshank Babu#**
