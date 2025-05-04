@@ -7,5 +7,7 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 and it was created by me V.Seshank babu don't mind me if anything fail check every line of script find it fixed because number one you can know how internal code and script work number two you can use this from your educational purposes and your learning purposes because it is a interpreted source based project thank you so much love you all
-install dependency using npm install or pnpm install or yarn install and do it yourself create it like as you like
- **#created by V.Seshank Babu#**
+install dependency using npm install or pnpm install or yarn install and do it yourself create it like as you like not for companies use your developers to create companies want to take my project think about Kali Linux and black Arch Linux uses a lot of hackers help me if I ask them don't lose your money 
+ 
+
+**#created by V.Seshank Babu#**
