@@ -9,5 +9,24 @@ This project is built with:
 and it was created by me V.Seshank babu don't mind me if anything fail check every line of script find it fixed because number one you can know how internal code and script work number two you can use this from your educational purposes and your learning purposes because it is a interpreted source based project thank you so much love you all
 install dependency using npm install or pnpm install or yarn install and do it yourself create it like as you like not for companies use your developers to create  from open source numbers and individuals and everyone rather than companies you can create and you can use your repositories to publish new version especially not for companies to create and publish it for your own benefit it is a open source not for close source members
  
+Important Notice
+
+This project is strictly for personal, educational, and non-commercial use only. **Corporate, enterprise, or organizational entities are NOT permitted to:
+
+• Download
+
+• Clone
+
+• Fork
+
+• Copy
+
+• Execute
+
+• Modify or otherwise interact with this repository.
+
+Any violation will be considered a breach of the intended use case.
+
+This repository is protected by custom licensing terms that strictly prohibit any form of corporate access. do not fuck with this shit no one want to pay extra money or any money from your so called pre build people want to educate not want to spend money on your close source prebuild shit they want to educate how everything's work together
 
 **#created by V.Seshank Babu#**
