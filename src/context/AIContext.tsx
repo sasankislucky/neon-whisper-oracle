@@ -261,7 +261,7 @@ export const AIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     selectedService,
     selectService,
     isOnlineMode,
-    setOnlineMode,
+    setOnlineMode: setIsOnlineMode, // Fixed here - using the state setter function
     sendMessage,
     isProcessing,
     hardwareInfo
