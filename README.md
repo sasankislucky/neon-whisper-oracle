@@ -9,15 +9,11 @@ pnpm install
 # or
 yarn install
 
-Then build it how YOU want. For YOU. Not for corporations.
-Not to “scale.” Not to monetize. Not to milk users.
-
+Then build it how YOU want.
 A Personal Declaration
 
 This project is open source.
-But not for suits. Not for whiteboards. 
-
-
+use it as you like 
 Licensing Terms:
 
 
