@@ -14,7 +14,8 @@ A Personal Declaration
 
 This project is open source.
 use it as you like 
-Licensing Terms:
+
+
 
 
 **#CreatedBy V. Seshank Babu**
